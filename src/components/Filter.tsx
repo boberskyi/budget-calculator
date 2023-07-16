@@ -1,17 +1,73 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
 import {TbArrowsTransferDown} from "react-icons/tb";
+import {SortType} from "../App";
 
-export const Filter = () => {
+type FilterPropsType = {
+    sortByValue: (sortVal: SortType) => void
+}
+export const Filter: React.FC<FilterPropsType> = ({sortByValue}) => {
+    const [isFilterMaxVisible, setIsFilterMaxVisible] = useState<boolean>(false);
+    const [selectedFilter, setSelectedFilter] = useState<string>('');
+    const handleFilterBtnClick = (filter: string) => {
+        if(selectedFilter === filter) {
+            setIsFilterMaxVisible(!isFilterMaxVisible);
+        } else {
+            setIsFilterMaxVisible(true);
+        }
+
+        setSelectedFilter(filter);
+    }
+
     return (
-        <StyledFilter>
-            <StyledFilterBtn>Group By <TbArrowsTransferDown/></StyledFilterBtn>
-            <StyledFilterBtn>Realisation <TbArrowsTransferDown/></StyledFilterBtn>
-            <StyledFilterBtn>Dates <TbArrowsTransferDown/></StyledFilterBtn>
-            <StyledFilterBtn>Types <TbArrowsTransferDown/></StyledFilterBtn>
-            <StyledFilterBtn>Sample <TbArrowsTransferDown/></StyledFilterBtn>
-            <StyledFilterBtn>Extended <TbArrowsTransferDown/></StyledFilterBtn>
-        </StyledFilter>
+        <>
+            <StyledFilter>
+                <StyledFilterBtn onClick={() => handleFilterBtnClick('groupBy')}>Group By <TbArrowsTransferDown/></StyledFilterBtn>
+                <StyledFilterBtn onClick={() => handleFilterBtnClick('realisation')}>Realisation <TbArrowsTransferDown/></StyledFilterBtn>
+                <StyledFilterBtn onClick={() => handleFilterBtnClick('dates')}>Dates <TbArrowsTransferDown/></StyledFilterBtn>
+                <StyledFilterBtn onClick={() => handleFilterBtnClick('types')}>Types <TbArrowsTransferDown/></StyledFilterBtn>
+                <StyledFilterBtn onClick={() => handleFilterBtnClick('categories')}>Categories<TbArrowsTransferDown/></StyledFilterBtn>
+                <StyledFilterBtn onClick={() => handleFilterBtnClick('sort')}>Sort<TbArrowsTransferDown/></StyledFilterBtn>
+            </StyledFilter>
+            <StyledFilterMax visible={isFilterMaxVisible}>
+                {selectedFilter === 'groupBy' && (
+                    <>
+                        {/* Buttons for 'Group By' filter */}
+                        {/* Add your specific buttons here */}
+                    </>
+                )}
+                {selectedFilter === 'realisation' && (
+                    <>
+                        {/* Buttons for 'Realisation' filter */}
+                        {/* Add your specific buttons here */}
+                    </>
+                )}
+                {selectedFilter === 'dates' && (
+                    <>
+                        {/* Buttons for 'Dates' filter */}
+                        {/* Add your specific buttons here */}
+                    </>
+                )}
+                {selectedFilter === 'types' && (
+                    <>
+                        {/* Buttons for 'Types' filter */}
+                        {/* Add your specific buttons here */}
+                    </>
+                )}
+                {selectedFilter === 'categories' && (
+                    <>
+                        {/* Buttons for 'Categories' filter */}
+                        {/* Add your specific buttons here */}
+                    </>
+                )}
+                {selectedFilter === 'sort' && (
+                    <>
+                        <button>Ascending</button>
+                        <button>Descending</button>
+                    </>
+                )}
+            </StyledFilterMax>
+        </>
     );
 };
 
@@ -29,4 +85,18 @@ const StyledFilterBtn = styled.button`
   cursor: pointer;
   border: 1px solid rgba(128, 128, 128, .4);
   color: rgba(128, 128, 128, 1);
+`
+
+interface StyledFilterMaxType {
+    visible: boolean
+}
+
+const StyledFilterMax = styled.div<StyledFilterMaxType>`
+  display: ${props => props.visible ? 'flex' : 'none'};
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  padding: 30px 0;
+  margin-bottom: 20px;
 `

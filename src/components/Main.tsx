@@ -3,16 +3,22 @@ import {Filter} from "./Filter";
 import styled from "styled-components";
 import {Summary} from "./Summary";
 import {Transactions} from "./Transactions";
-import {TransactionsType} from "../App";
+import {SortType, TransactionsType} from "../App";
 
 type MainPropsType = {
     transactions: TransactionsType[],
-    removeTransaction: (transactionId:number) => void
+    removeTransaction: (transactionId:number) => void,
+    sortByValue: (sortVal:SortType) => void
 }
-export const Main:React.FC<MainPropsType> = ({transactions,removeTransaction}) => {
+export const Main:React.FC<MainPropsType> = (
+    {
+        transactions,
+        removeTransaction,
+        sortByValue
+    }) => {
     return (
         <StyledMain>
-            <Filter/>
+            <Filter sortByValue={sortByValue}/>
             <Summary/>
             <Transactions
                 transactions={transactions}

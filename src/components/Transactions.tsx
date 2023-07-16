@@ -7,7 +7,11 @@ type TransactionsPropsType = {
     transactions: TransactionsType[],
     removeTransaction: (transactionId:number) => void
 }
-export const Transactions:React.FC<TransactionsPropsType> = ({transactions, removeTransaction}) => {
+export const Transactions:React.FC<TransactionsPropsType> = (
+    {
+        transactions,
+        removeTransaction
+    }) => {
     return (
         <StyledTransactions>
             {transactions.map(tr => {
