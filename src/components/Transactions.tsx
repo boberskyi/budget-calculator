@@ -1,16 +1,19 @@
 import React from 'react';
 import styled from "styled-components";
 import {TransactionItm} from "./TransactionItm";
+import {TransactionsType} from "../App";
 
-export const Transactions = () => {
+type TransactionsPropsType = {
+    transactions: TransactionsType[]
+}
+export const Transactions:React.FC<TransactionsPropsType> = ({transactions}) => {
     return (
         <StyledTransactions>
-            <TransactionItm />
-            <TransactionItm />
-            <TransactionItm />
-            <TransactionItm />
-            <TransactionItm />
-            <TransactionItm />
+            {transactions.map(tr => {
+                return (
+                    <TransactionItm key={tr.id}/>
+                )
+            })}
         </StyledTransactions>
     );
 };

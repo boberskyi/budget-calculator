@@ -3,13 +3,17 @@ import {Filter} from "./Filter";
 import styled from "styled-components";
 import {Summary} from "./Summary";
 import {Transactions} from "./Transactions";
+import {TransactionsType} from "../App";
 
-export const Main = () => {
+type MainPropsType = {
+    transactions: TransactionsType[]
+}
+export const Main:React.FC<MainPropsType> = ({transactions}) => {
     return (
         <StyledMain>
             <Filter/>
             <Summary/>
-            <Transactions/>
+            <Transactions transactions={transactions}/>
         </StyledMain>
     );
 };

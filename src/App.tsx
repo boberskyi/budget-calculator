@@ -4,8 +4,17 @@ import styled from "styled-components";
 import {Main} from "./components/Main";
 import {Sidebar} from "./components/Sidebar";
 
+export type TransactionsType = {
+    id: number,
+    ico: string,
+    icoColor: string,
+    title: string,
+    date: string,
+    value: string,
+    pined: boolean
+}
 function App() {
-const Transactions = [
+const Transactions:TransactionsType[] = [
     {
         id: 1,
         ico: 'BsFillCupHotFill',
@@ -46,7 +55,7 @@ const Transactions = [
   return (
     <StyledApp className="App">
       <StyledWrapper>
-        <Main/>
+        <Main transactions={Transactions}/>
         <Sidebar/>
       </StyledWrapper>
     </StyledApp>
