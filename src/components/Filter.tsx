@@ -1,16 +1,21 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
 import {TbArrowsTransferDown} from "react-icons/tb";
-import {SortType} from "../App";
+import {CategoriesPropsType, SortType} from "../App";
 
 type FilterPropsType = {
-    sortByValue: (sortVal: SortType) => void
+    sortByValue: (sortVal: SortType) => void,
+    categories: CategoriesPropsType[]
 }
-export const Filter: React.FC<FilterPropsType> = ({sortByValue}) => {
+export const Filter: React.FC<FilterPropsType> = (
+    {
+        sortByValue,
+        categories
+    }) => {
     const [isFilterMaxVisible, setIsFilterMaxVisible] = useState<boolean>(false);
     const [selectedFilter, setSelectedFilter] = useState<string>('');
     const handleFilterBtnClick = (filter: string) => {
-        if(selectedFilter === filter) {
+        if (selectedFilter === filter) {
             setIsFilterMaxVisible(!isFilterMaxVisible);
         } else {
             setIsFilterMaxVisible(true);
@@ -21,12 +26,17 @@ export const Filter: React.FC<FilterPropsType> = ({sortByValue}) => {
     return (
         <>
             <StyledFilter>
-                <StyledFilterBtn onClick={() => handleFilterBtnClick('groupBy')}>Group By <TbArrowsTransferDown/></StyledFilterBtn>
+                <StyledFilterBtn onClick={() => handleFilterBtnClick('groupBy')}>Group
+                    By <TbArrowsTransferDown/></StyledFilterBtn>
                 <StyledFilterBtn onClick={() => handleFilterBtnClick('realisation')}>Realisation <TbArrowsTransferDown/></StyledFilterBtn>
-                <StyledFilterBtn onClick={() => handleFilterBtnClick('dates')}>Dates <TbArrowsTransferDown/></StyledFilterBtn>
-                <StyledFilterBtn onClick={() => handleFilterBtnClick('types')}>Types <TbArrowsTransferDown/></StyledFilterBtn>
-                <StyledFilterBtn onClick={() => handleFilterBtnClick('categories')}>Categories<TbArrowsTransferDown/></StyledFilterBtn>
-                <StyledFilterBtn onClick={() => handleFilterBtnClick('sort')}>Sort<TbArrowsTransferDown/></StyledFilterBtn>
+                <StyledFilterBtn
+                    onClick={() => handleFilterBtnClick('dates')}>Dates <TbArrowsTransferDown/></StyledFilterBtn>
+                <StyledFilterBtn
+                    onClick={() => handleFilterBtnClick('types')}>Types <TbArrowsTransferDown/></StyledFilterBtn>
+                <StyledFilterBtn
+                    onClick={() => handleFilterBtnClick('categories')}>Categories<TbArrowsTransferDown/></StyledFilterBtn>
+                <StyledFilterBtn
+                    onClick={() => handleFilterBtnClick('sort')}>Sort<TbArrowsTransferDown/></StyledFilterBtn>
             </StyledFilter>
             <StyledFilterMax visible={isFilterMaxVisible}>
                 {selectedFilter === 'groupBy' && (
@@ -55,8 +65,14 @@ export const Filter: React.FC<FilterPropsType> = ({sortByValue}) => {
                 )}
                 {selectedFilter === 'categories' && (
                     <>
-                        {/* Buttons for 'Categories' filter */}
-                        {/* Add your specific buttons here */}
+                        {categories.map(cat => {
+                            return (
+                                <StyledCategoryChck key={cat.id}>
+                                    <input type="checkbox" value={cat.title}/>
+                                    {cat.title}
+                                </StyledCategoryChck>
+                            )
+                        })}
                     </>
                 )}
                 {selectedFilter === 'sort' && (
@@ -99,4 +115,9 @@ const StyledFilterMax = styled.div<StyledFilterMaxType>`
   width: 100%;
   padding: 30px 0;
   margin-bottom: 20px;
+`
+const StyledCategoryChck = styled.div`
+  display: flex;
+  gap: 5px;
+  align-items: center;
 `

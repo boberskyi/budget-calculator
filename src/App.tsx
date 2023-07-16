@@ -99,6 +99,7 @@ const App: React.FC = () => {
                     transactions={modifyedTransactions}
                     removeTransaction={removeTransaction}
                     sortByValue={sortByValue}
+                    categories={categories}
                 />
                 <Sidebar categories={categories}/>
             </StyledWrapper>
