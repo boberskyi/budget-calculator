@@ -11,7 +11,15 @@ export const Transactions:React.FC<TransactionsPropsType> = ({transactions}) => 
         <StyledTransactions>
             {transactions.map(tr => {
                 return (
-                    <TransactionItm key={tr.id}/>
+                    <TransactionItm
+                        key={tr.id}
+                        icoId={tr.icoId}
+                        icoColor={tr.icoColor}
+                        title={tr.title}
+                        date={tr.date}
+                        value={tr.value}
+                        pined={tr.pined}
+                    />
                 )
             })}
         </StyledTransactions>

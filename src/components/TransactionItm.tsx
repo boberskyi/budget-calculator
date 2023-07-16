@@ -1,22 +1,58 @@
 import React from 'react';
 import styled from "styled-components";
 import {BsFillCupHotFill, BsFillPinAngleFill, BsFillTrash3Fill} from "react-icons/bs";
+import {BiShoppingBag} from "react-icons/bi";
+import {AiOutlineCreditCard, AiOutlineGift} from "react-icons/ai";
 
-export const TransactionItm = () => {
+type TransactionItmPropsType = {
+    icoId: string,
+    icoColor: string,
+    title: string,
+    date: string,
+    value: string,
+    pined: boolean
+}
+export const TransactionItm: React.FC<TransactionItmPropsType> = (
+    {
+        icoId,
+        icoColor,
+        title,
+        date,
+        value,
+        pined,
+    }
+) => {
+    const getIconComponent = (iconName: string) => {
+        switch (iconName) {
+            case 'BsFillCupHotFill':
+                return <BsFillCupHotFill/>;
+            case 'BiShoppingBag':
+                return <BiShoppingBag/>;
+            case 'AiOutlineCreditCard':
+                return <AiOutlineCreditCard/>;
+            case 'AiOutlineGift':
+                return <AiOutlineGift/>;
+            default:
+                return <AiOutlineCreditCard/>;
+        }
+    };
+
+    const iconComponent = getIconComponent(icoId);
+
     return (
         <StyledTransactionItm>
             <StyledTransactionItmLeft>
-                <StyledTransactionItmIco color="45, 138, 254">
-                    <BsFillCupHotFill/>
+                <StyledTransactionItmIco color={icoColor}>
+                    {iconComponent}
                 </StyledTransactionItmIco>
                 <StyledTransactionItmText>
-                    <StyledTransactionItmTitle>Restaurants & Cafe</StyledTransactionItmTitle>
-                    <StyledTransactionItmDate>13 July 2023</StyledTransactionItmDate>
+                    <StyledTransactionItmTitle>{title}</StyledTransactionItmTitle>
+                    <StyledTransactionItmDate>{date}</StyledTransactionItmDate>
                 </StyledTransactionItmText>
             </StyledTransactionItmLeft>
 
             <StyledTransactionItmRight>
-                <StyledTransactionItmValue>-99.00zł</StyledTransactionItmValue>
+                <StyledTransactionItmValue>{value}zł</StyledTransactionItmValue>
                 <StyledTransactionItmIco color="45, 138, 254">
                     <BsFillPinAngleFill/>
                 </StyledTransactionItmIco>
@@ -46,9 +82,11 @@ const StyledTransactionItmRight = styled.div`
   align-items: center;
   gap: 10px;
 `
+
 interface ItmIcoTypes {
     color: string
 }
+
 const StyledTransactionItmIco = styled.div<ItmIcoTypes>`
   cursor: pointer;
   display: flex;

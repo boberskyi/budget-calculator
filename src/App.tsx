@@ -6,7 +6,7 @@ import {Sidebar} from "./components/Sidebar";
 
 export type TransactionsType = {
     id: number,
-    ico: string,
+    icoId: string,
     icoColor: string,
     title: string,
     date: string,
@@ -17,7 +17,7 @@ function App() {
 const Transactions:TransactionsType[] = [
     {
         id: 1,
-        ico: 'BsFillCupHotFill',
+        icoId: 'BsFillCupHotFill',
         icoColor: '45, 138, 254',
         title: 'Restaurants & Cafe',
         date: '13 July 2023',
@@ -26,7 +26,7 @@ const Transactions:TransactionsType[] = [
     },
     {
         id: 2,
-        ico: 'LiaShoppingBagSolid',
+        icoId: 'BiShoppingBag',
         icoColor: '152, 127, 255',
         title: 'Clothes & Shopping',
         date: '12 July 2023',
@@ -35,7 +35,7 @@ const Transactions:TransactionsType[] = [
     },
     {
         id: 3,
-        ico: 'AiOutlineCreditCard',
+        icoId: 'AiOutlineCreditCard',
         icoColor: '241, 188, 44',
         title: 'Credit & Loans',
         date: '9 July 2023',
@@ -44,7 +44,7 @@ const Transactions:TransactionsType[] = [
     },
     {
         id: 4,
-        ico: 'AiOutlineGift',
+        icoId: 'AiOutlineGift',
         icoColor: '237, 121, 120',
         title: 'Gifts Card',
         date: '1 July 2023',
