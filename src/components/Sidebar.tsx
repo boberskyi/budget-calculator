@@ -2,8 +2,15 @@ import React from 'react';
 import styled from "styled-components";
 import {AiFillShop} from "react-icons/ai";
 import {RiBillFill} from "react-icons/ri";
+import {CategoriesPropsType} from "../App";
 
-export const Sidebar = () => {
+type SidebarPropsType = {
+    categories: CategoriesPropsType[]
+}
+export const Sidebar:React.FC<SidebarPropsType> = (
+    {
+        categories
+    }) => {
     return (
         <StyledSidebar>
             <StyledSidebarProfile>
@@ -12,6 +19,7 @@ export const Sidebar = () => {
                     <img src="https://media.licdn.com/dms/image/C4D03AQGulInLYMHQKg/profile-displayphoto-shrink_400_400/0/1649411282010?e=1694649600&v=beta&t=XIS1Fk25t5CvfSuvUeewGDdGEuuycKaQF8nrvHazQN0" alt="Bohdan Boberskyi"/>
                 </StyledSidebarProfileAvatar>
             </StyledSidebarProfile>
+
             <StyledSidebarSection>
                 <StyledSidebarSectionTitle>
                     Wallets
@@ -27,20 +35,27 @@ export const Sidebar = () => {
                     </StyledSidebarSectionItmTxt>
                 </StyledSidebarSectionItm>
             </StyledSidebarSection>
+
             <StyledSidebarSection>
                 <StyledSidebarSectionTitle>
                     Categories
                     <StyledSidebarSectionBtnMore>+</StyledSidebarSectionBtnMore>
                 </StyledSidebarSectionTitle>
-                <StyledSidebarSectionItm>
-                    <StyledSidebarSectionItmIco color="#06b681">
-                        <RiBillFill/>
-                    </StyledSidebarSectionItmIco>
-                    <StyledSidebarSectionItmTxt>
-                        <StyledSidebarSectionItmTitle>Bills</StyledSidebarSectionItmTitle>
-                        <StyledSidebarSectionItmValue>$875.00</StyledSidebarSectionItmValue>
-                    </StyledSidebarSectionItmTxt>
-                </StyledSidebarSectionItm>
+
+                {categories.map(cat => {
+                    return (
+                        <StyledSidebarSectionItm key={cat.id}>
+                            <StyledSidebarSectionItmIco color={cat.bgColor}>
+                                <RiBillFill/>
+                            </StyledSidebarSectionItmIco>
+                            <StyledSidebarSectionItmTxt>
+                                <StyledSidebarSectionItmTitle>{cat.title}</StyledSidebarSectionItmTitle>
+                                <StyledSidebarSectionItmValue>{cat.value}zł</StyledSidebarSectionItmValue>
+                            </StyledSidebarSectionItmTxt>
+                        </StyledSidebarSectionItm>
+                    )
+                })}
+
             </StyledSidebarSection>
         </StyledSidebar>
     );
@@ -110,7 +125,7 @@ const StyledSidebarSectionItmTxt = styled.div`
   flex-direction: column;
 `
 const StyledSidebarSectionItmTitle = styled.div`
-  
+  font-weight: bold;
 `
 const StyledSidebarSectionItmValue = styled.div`
   

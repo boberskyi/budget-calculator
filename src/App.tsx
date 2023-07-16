@@ -13,6 +13,13 @@ export type TransactionsType = {
     value: string,
     pined: boolean
 }
+export type CategoriesPropsType = {
+    id: number,
+    icoId: string,
+    bgColor: string,
+    title: string,
+    value: string
+}
 export type SortType = 'standard' | 'ascending' | 'descending';
 const App: React.FC = () => {
 
@@ -55,6 +62,23 @@ const App: React.FC = () => {
         },
     ]);
 
+    const categories:CategoriesPropsType[] = [
+        {
+            id: 1,
+            icoId: 'RiBillFill',
+            bgColor: '#06b681',
+            title: 'Bills',
+            value: '875.00'
+        },
+        {
+            id: 2,
+            icoId: 'AiOutlineStock',
+            bgColor: '#ff9165',
+            title: 'Investments',
+            value: '3000.00'
+        },
+    ]
+
 
     const removeTransaction = (transactionId: number) => setTransactions(transactions.filter(tr => tr.id !== transactionId));
     let [sorted, setSorted] = useState<SortType>('standard');
@@ -76,7 +100,7 @@ const App: React.FC = () => {
                     removeTransaction={removeTransaction}
                     sortByValue={sortByValue}
                 />
-                <Sidebar/>
+                <Sidebar categories={categories}/>
             </StyledWrapper>
         </StyledApp>
     );
