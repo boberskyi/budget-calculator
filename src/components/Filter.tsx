@@ -61,6 +61,7 @@ export const Filter: React.FC<FilterPropsType> = ({sortByValue}) => {
                 )}
                 {selectedFilter === 'sort' && (
                     <>
+                        <button onClick={() => sortByValue('standard')}>Standard</button>
                         <button onClick={() => sortByValue('ascending')}>Ascending</button>
                         <button onClick={() => sortByValue('descending')}>Descending</button>
                     </>
