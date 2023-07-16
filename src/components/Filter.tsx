@@ -15,7 +15,6 @@ export const Filter: React.FC<FilterPropsType> = ({sortByValue}) => {
         } else {
             setIsFilterMaxVisible(true);
         }
-
         setSelectedFilter(filter);
     }
 
@@ -62,8 +61,8 @@ export const Filter: React.FC<FilterPropsType> = ({sortByValue}) => {
                 )}
                 {selectedFilter === 'sort' && (
                     <>
-                        <button>Ascending</button>
-                        <button>Descending</button>
+                        <button onClick={() => sortByValue('ascending')}>Ascending</button>
+                        <button onClick={() => sortByValue('descending')}>Descending</button>
                     </>
                 )}
             </StyledFilterMax>
