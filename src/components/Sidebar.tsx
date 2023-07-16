@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from "styled-components";
-import {AiFillShop} from "react-icons/ai";
+import {AiFillShop, AiOutlineCreditCard, AiOutlineGift, AiOutlineStock} from "react-icons/ai";
 import {RiBillFill} from "react-icons/ri";
 import {CategoriesPropsType} from "../App";
+import {BsFillCupHotFill} from "react-icons/bs";
+import {BiShoppingBag} from "react-icons/bi";
 
 type SidebarPropsType = {
     categories: CategoriesPropsType[]
@@ -11,6 +13,8 @@ export const Sidebar:React.FC<SidebarPropsType> = (
     {
         categories
     }) => {
+
+
     return (
         <StyledSidebar>
             <StyledSidebarProfile>
@@ -43,10 +47,22 @@ export const Sidebar:React.FC<SidebarPropsType> = (
                 </StyledSidebarSectionTitle>
 
                 {categories.map(cat => {
+                    const getIconSidebar = (iconName: string) => {
+                        switch (iconName) {
+                            case 'RiBillFill':
+                                return <RiBillFill/>;
+                            case 'AiOutlineStock':
+                                return <AiOutlineStock/>;
+                            default:
+                                return <RiBillFill/>;
+                        }
+                    };
+                    const iconSidebar = getIconSidebar(cat.icoId);
+
                     return (
                         <StyledSidebarSectionItm key={cat.id}>
                             <StyledSidebarSectionItmIco color={cat.bgColor}>
-                                <RiBillFill/>
+                                {iconSidebar}
                             </StyledSidebarSectionItmIco>
                             <StyledSidebarSectionItmTxt>
                                 <StyledSidebarSectionItmTitle>{cat.title}</StyledSidebarSectionItmTitle>
