@@ -16,7 +16,7 @@ export const TransactionItm = () => {
             </StyledTransactionItmLeft>
 
             <StyledTransactionItmRight>
-                <StyledTransactionItmValue>-$99.00</StyledTransactionItmValue>
+                <StyledTransactionItmValue>-99.00zł</StyledTransactionItmValue>
                 <StyledTransactionItmIco color="45, 138, 254">
                     <BsFillPinAngleFill/>
                 </StyledTransactionItmIco>

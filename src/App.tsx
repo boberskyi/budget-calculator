@@ -5,6 +5,44 @@ import {Main} from "./components/Main";
 import {Sidebar} from "./components/Sidebar";
 
 function App() {
+const Transactions = [
+    {
+        id: 1,
+        ico: 'BsFillCupHotFill',
+        icoColor: '45, 138, 254',
+        title: 'Restaurants & Cafe',
+        date: '13 July 2023',
+        value: '99.00',
+        pined: false
+    },
+    {
+        id: 2,
+        ico: 'LiaShoppingBagSolid',
+        icoColor: '152, 127, 255',
+        title: 'Clothes & Shopping',
+        date: '12 July 2023',
+        value: '2300.00',
+        pined: false
+    },
+    {
+        id: 3,
+        ico: 'AiOutlineCreditCard',
+        icoColor: '241, 188, 44',
+        title: 'Credit & Loans',
+        date: '9 July 2023',
+        value: '300.00',
+        pined: false
+    },
+    {
+        id: 4,
+        ico: 'AiOutlineGift',
+        icoColor: '237, 121, 120',
+        title: 'Gifts Card',
+        date: '1 July 2023',
+        value: '85.00',
+        pined: false
+    },
+]
   return (
     <StyledApp className="App">
       <StyledWrapper>
