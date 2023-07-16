@@ -6,14 +6,18 @@ import {Transactions} from "./Transactions";
 import {TransactionsType} from "../App";
 
 type MainPropsType = {
-    transactions: TransactionsType[]
+    transactions: TransactionsType[],
+    removeTransaction: (transactionId:number) => void
 }
-export const Main:React.FC<MainPropsType> = ({transactions}) => {
+export const Main:React.FC<MainPropsType> = ({transactions,removeTransaction}) => {
     return (
         <StyledMain>
             <Filter/>
             <Summary/>
-            <Transactions transactions={transactions}/>
+            <Transactions
+                transactions={transactions}
+                removeTransaction={removeTransaction}
+            />
         </StyledMain>
     );
 };

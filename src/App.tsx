@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import styled from "styled-components";
 import {Main} from "./components/Main";
@@ -13,8 +13,9 @@ export type TransactionsType = {
     value: string,
     pined: boolean
 }
-function App() {
-const Transactions:TransactionsType[] = [
+const App:React.FC = () => {
+
+let [transactions, setTransactions] = useState([
     {
         id: 1,
         icoId: 'BsFillCupHotFill',
@@ -51,11 +52,17 @@ const Transactions:TransactionsType[] = [
         value: '85.00',
         pined: false
     },
-]
+]);
+
+const removeTransaction = (transactionId:number) => setTransactions(transactions.filter(tr => tr.id !== transactionId));
+
   return (
     <StyledApp className="App">
       <StyledWrapper>
-        <Main transactions={Transactions}/>
+        <Main
+            transactions={transactions}
+            removeTransaction={removeTransaction}
+        />
         <Sidebar/>
       </StyledWrapper>
     </StyledApp>

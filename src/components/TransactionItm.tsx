@@ -5,21 +5,25 @@ import {BiShoppingBag} from "react-icons/bi";
 import {AiOutlineCreditCard, AiOutlineGift} from "react-icons/ai";
 
 type TransactionItmPropsType = {
+    id: number,
     icoId: string,
     icoColor: string,
     title: string,
     date: string,
     value: string,
-    pined: boolean
+    pined: boolean,
+    removeTransaction: (transactionId:number) => void
 }
 export const TransactionItm: React.FC<TransactionItmPropsType> = (
     {
+        id,
         icoId,
         icoColor,
         title,
         date,
         value,
         pined,
+        removeTransaction
     }
 ) => {
     const getIconComponent = (iconName: string) => {
@@ -36,7 +40,6 @@ export const TransactionItm: React.FC<TransactionItmPropsType> = (
                 return <AiOutlineCreditCard/>;
         }
     };
-
     const iconComponent = getIconComponent(icoId);
 
     return (
@@ -56,7 +59,10 @@ export const TransactionItm: React.FC<TransactionItmPropsType> = (
                 <StyledTransactionItmIco color="45, 138, 254">
                     <BsFillPinAngleFill/>
                 </StyledTransactionItmIco>
-                <StyledTransactionItmIco color="128, 128, 128">
+                <StyledTransactionItmIco
+                    color="128, 128, 128"
+                    onClick={()=>removeTransaction(id)}
+                >
                     <BsFillTrash3Fill/>
                 </StyledTransactionItmIco>
             </StyledTransactionItmRight>

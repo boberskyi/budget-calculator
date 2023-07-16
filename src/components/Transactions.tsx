@@ -4,21 +4,24 @@ import {TransactionItm} from "./TransactionItm";
 import {TransactionsType} from "../App";
 
 type TransactionsPropsType = {
-    transactions: TransactionsType[]
+    transactions: TransactionsType[],
+    removeTransaction: (transactionId:number) => void
 }
-export const Transactions:React.FC<TransactionsPropsType> = ({transactions}) => {
+export const Transactions:React.FC<TransactionsPropsType> = ({transactions, removeTransaction}) => {
     return (
         <StyledTransactions>
             {transactions.map(tr => {
                 return (
                     <TransactionItm
                         key={tr.id}
+                        id={tr.id}
                         icoId={tr.icoId}
                         icoColor={tr.icoColor}
                         title={tr.title}
                         date={tr.date}
                         value={tr.value}
                         pined={tr.pined}
+                        removeTransaction={removeTransaction}
                     />
                 )
             })}
