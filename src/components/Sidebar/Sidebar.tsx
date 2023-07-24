@@ -2,9 +2,10 @@ import React from 'react';
 import styled from "styled-components";
 import {AiFillShop, AiOutlineCreditCard, AiOutlineGift, AiOutlineStock} from "react-icons/ai";
 import {RiBillFill} from "react-icons/ri";
-import {CategoriesPropsType} from "../App";
+import {CategoriesPropsType} from "../../App";
 import {BsFillCupHotFill} from "react-icons/bs";
 import {BiShoppingBag} from "react-icons/bi";
+import {SidebarProfile} from "./SidebarProfile/SidebarProfile";
 
 type SidebarPropsType = {
     categories: CategoriesPropsType[]
@@ -17,12 +18,8 @@ export const Sidebar:React.FC<SidebarPropsType> = (
 
     return (
         <StyledSidebar>
-            <StyledSidebarProfile>
-                <StyledSidebarProfileName>Bohdan Boberskyi</StyledSidebarProfileName>
-                <StyledSidebarProfileAvatar>
-                    <img src="https://media.licdn.com/dms/image/C4D03AQGulInLYMHQKg/profile-displayphoto-shrink_400_400/0/1649411282010?e=1694649600&v=beta&t=XIS1Fk25t5CvfSuvUeewGDdGEuuycKaQF8nrvHazQN0" alt="Bohdan Boberskyi"/>
-                </StyledSidebarProfileAvatar>
-            </StyledSidebarProfile>
+            <SidebarProfile/>
+
 
             <StyledSidebarSection>
                 <StyledSidebarSectionTitle>
@@ -91,26 +88,11 @@ const StyledSidebar = styled.aside`
   padding: 20px;
   gap: 40px;
 `
-const StyledSidebarProfile = styled.div`
- display: flex;
-  align-items: center;
-  justify-content: space-between;
-`
+
 const StyledSidebarSection = styled.section`
   display: flex;
   flex-direction: column;
   gap: 20px;
-`
-const StyledSidebarProfileName = styled.h3`
-  
-`
-const StyledSidebarProfileAvatar = styled.a`
-  width: 30px;
-  
-  img {
-    max-width: 100%;
-    border-radius: 5px;
-  }
 `
 const StyledSidebarSectionTitle = styled.h2`
   display: flex;

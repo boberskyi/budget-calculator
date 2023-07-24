@@ -1,9 +1,9 @@
 import React from 'react';
-import {Filter} from "./Filter";
+import {Filter} from "../Filter";
 import styled from "styled-components";
-import {Summary} from "./Summary";
-import {Transactions} from "./Transactions";
-import {CategoriesPropsType, SortType, TransactionsType} from "../App";
+import {Summary} from "../Summary";
+import {Transactions} from "../Transactions";
+import {CategoriesPropsType, SortType, TransactionsType} from "../../App";
 
 type MainPropsType = {
     transactions: TransactionsType[],

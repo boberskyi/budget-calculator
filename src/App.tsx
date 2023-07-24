@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import './App.css';
 import styled from "styled-components";
-import {Main} from "./components/Main";
-import {Sidebar} from "./components/Sidebar";
+import {Main} from "./components/Main/Main";
+import {Sidebar} from "./components/Sidebar/Sidebar";
 
 export type TransactionsType = {
     id: number,
@@ -80,7 +80,10 @@ const App: React.FC = () => {
     ]
 
 
-    const removeTransaction = (transactionId: number) => setTransactions(transactions.filter(tr => tr.id !== transactionId));
+    const removeTransaction = (transactionId: number) => {
+        setTransactions(transactions.filter(tr => tr.id !== transactionId));
+    }
+
     let [sorted, setSorted] = useState<SortType>('standard');
 
     const sortByValue = (sortVal:SortType) => setSorted(sortVal);
