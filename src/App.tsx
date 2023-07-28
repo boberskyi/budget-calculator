@@ -83,6 +83,19 @@ const App: React.FC = () => {
     const removeTransaction = (transactionId: number) => {
         setTransactions(transactions.filter(tr => tr.id !== transactionId));
     }
+    const addTransaction = () => {
+        const newId = transactions.length + 1;
+        const newTransaction = {
+            id: newId,
+            icoId: 'BsFillCupHotFill',
+            icoColor: '45, 138, 254',
+            title: 'New title',
+            date: '28 July 2023',
+            value: '150.00',
+            pined: false};
+
+        setTransactions([newTransaction, ...transactions]);
+    }
 
     let [sorted, setSorted] = useState<SortType>('standard');
 
@@ -103,6 +116,7 @@ const App: React.FC = () => {
                         removeTransaction={removeTransaction}
                         sortByValue={sortByValue}
                         categories={categories}
+                        addTransaction={addTransaction}
                     />
                     <Sidebar categories={categories}/>
                 </StyledWrapper>

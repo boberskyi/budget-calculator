@@ -9,14 +9,16 @@ type MainPropsType = {
     transactions: TransactionsType[],
     removeTransaction: (transactionId:number) => void,
     sortByValue: (sortVal:SortType) => void,
-    categories: CategoriesPropsType[]
+    categories: CategoriesPropsType[],
+    addTransaction: () => void
 }
 export const Main:React.FC<MainPropsType> = (
     {
         transactions,
         removeTransaction,
         sortByValue,
-        categories
+        categories,
+        addTransaction
     }) => {
     return (
         <StyledMain>
@@ -28,6 +30,7 @@ export const Main:React.FC<MainPropsType> = (
             <Transactions
                 transactions={transactions}
                 removeTransaction={removeTransaction}
+                addTransaction={addTransaction}
             />
         </StyledMain>
     );

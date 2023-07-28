@@ -2,26 +2,30 @@ import React from 'react';
 import styled from "styled-components";
 import {TransactionItm} from "./TransactionItm";
 import {TransactionsType} from "../App";
-import { Link } from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import {Route, Routes} from "react-router";
 import {AddTransactionsForm} from "./Sidebar/AddTransactionsForm/AddTransactionsForm";
 
 type TransactionsPropsType = {
     transactions: TransactionsType[],
-    removeTransaction: (transactionId:number) => void
+    removeTransaction: (transactionId:number) => void,
+    addTransaction: () => void
 }
 export const Transactions:React.FC<TransactionsPropsType> = (
     {
         transactions,
-        removeTransaction
+        removeTransaction,
+        addTransaction
     }) => {
+
+    const location = useLocation();
     return (
         <StyledTransactions>
             <StyledAddTransaction to={'/add'}>Add transaction</StyledAddTransaction>
             <Routes>
-                <Route path={'/add'} element={<AddTransactionsForm/>}/>
+                <Route path={'/add'} element={<AddTransactionsForm addTransaction={addTransaction}/>}/>
             </Routes>
-            {transactions.map(tr => {
+            {location.pathname === '/' && transactions.map(tr => {
                 return (
                     <TransactionItm
                         key={tr.id}
