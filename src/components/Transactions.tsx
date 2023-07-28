@@ -2,6 +2,9 @@ import React from 'react';
 import styled from "styled-components";
 import {TransactionItm} from "./TransactionItm";
 import {TransactionsType} from "../App";
+import { Link } from "react-router-dom";
+import {Route, Routes} from "react-router";
+import {AddTransactionsForm} from "./Sidebar/AddTransactionsForm/AddTransactionsForm";
 
 type TransactionsPropsType = {
     transactions: TransactionsType[],
@@ -14,6 +17,10 @@ export const Transactions:React.FC<TransactionsPropsType> = (
     }) => {
     return (
         <StyledTransactions>
+            <StyledAddTransaction to={'/add'}>Add transaction</StyledAddTransaction>
+            <Routes>
+                <Route path={'/add'} element={<AddTransactionsForm/>}/>
+            </Routes>
             {transactions.map(tr => {
                 return (
                     <TransactionItm
@@ -38,4 +45,7 @@ const StyledTransactions = styled.div`
   flex-direction: column;
   margin-top: 30px;
   gap: 20px;
+`
+const StyledAddTransaction = styled(Link)`
+  padding: 10px;
 `

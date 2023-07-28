@@ -62,7 +62,7 @@ const App: React.FC = () => {
         },
     ]);
 
-    const categories:CategoriesPropsType[] = [
+    const categories: CategoriesPropsType[] = [
         {
             id: 1,
             icoId: 'RiBillFill',
@@ -86,7 +86,7 @@ const App: React.FC = () => {
 
     let [sorted, setSorted] = useState<SortType>('standard');
 
-    const sortByValue = (sortVal:SortType) => setSorted(sortVal);
+    const sortByValue = (sortVal: SortType) => setSorted(sortVal);
     const modifyedTransactions = [...transactions];
     if (sorted === 'ascending') {
         modifyedTransactions.sort((a, b) => parseFloat(a.value) - parseFloat(b.value));
@@ -97,15 +97,15 @@ const App: React.FC = () => {
 
     return (
         <StyledApp className="App">
-            <StyledWrapper>
-                <Main
-                    transactions={modifyedTransactions}
-                    removeTransaction={removeTransaction}
-                    sortByValue={sortByValue}
-                    categories={categories}
-                />
-                <Sidebar categories={categories}/>
-            </StyledWrapper>
+                <StyledWrapper>
+                    <Main
+                        transactions={modifyedTransactions}
+                        removeTransaction={removeTransaction}
+                        sortByValue={sortByValue}
+                        categories={categories}
+                    />
+                    <Sidebar categories={categories}/>
+                </StyledWrapper>
         </StyledApp>
     );
 }
