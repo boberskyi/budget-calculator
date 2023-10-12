@@ -5,14 +5,14 @@ import {BiShoppingBag} from "react-icons/bi";
 import {AiOutlineCreditCard, AiOutlineGift} from "react-icons/ai";
 
 type TransactionItmPropsType = {
-    id: number,
+    id: string,
     icoId: string,
     icoColor: string,
     title: string,
     date: string,
     value: string,
     pined: boolean,
-    removeTransaction: (transactionId:number) => void
+    removeTransaction: (transactionId:string) => void
 }
 export const TransactionItm: React.FC<TransactionItmPropsType> = (
     {

@@ -3,9 +3,14 @@ import './App.css';
 import styled from "styled-components";
 import {Main} from "./components/Main/Main";
 import {Sidebar} from "./components/Sidebar/Sidebar";
+import {legacy_createStore} from "redux";
+import { v1 } from 'uuid';
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "./state/store";
+import {addTransactionAC} from "./state/transactionsReducer";
 
 export type TransactionsType = {
-    id: number,
+    id: string,
     icoId: string,
     icoColor: string,
     title: string,
@@ -14,7 +19,7 @@ export type TransactionsType = {
     pined: boolean
 }
 export type CategoriesPropsType = {
-    id: number,
+    id: string,
     icoId: string,
     bgColor: string,
     title: string,
@@ -23,55 +28,19 @@ export type CategoriesPropsType = {
 export type SortType = 'standard' | 'ascending' | 'descending';
 const App: React.FC = () => {
 
-    let [transactions, setTransactions] = useState<TransactionsType[]>([
-        {
-            id: 1,
-            icoId: 'BsFillCupHotFill',
-            icoColor: '45, 138, 254',
-            title: 'Restaurants & Cafe',
-            date: '13 July 2023',
-            value: '99.00',
-            pined: false
-        },
-        {
-            id: 2,
-            icoId: 'BiShoppingBag',
-            icoColor: '152, 127, 255',
-            title: 'Clothes & Shopping',
-            date: '12 July 2023',
-            value: '2300.00',
-            pined: false
-        },
-        {
-            id: 3,
-            icoId: 'AiOutlineCreditCard',
-            icoColor: '241, 188, 44',
-            title: 'Credit & Loans',
-            date: '9 July 2023',
-            value: '300.00',
-            pined: false
-        },
-        {
-            id: 4,
-            icoId: 'AiOutlineGift',
-            icoColor: '237, 121, 120',
-            title: 'Gifts Card',
-            date: '1 July 2023',
-            value: '85.00',
-            pined: false
-        },
-    ]);
 
+    const dispatch = useDispatch();
+    const transactions = useSelector<AppRootStateType, TransactionsType[]>(state => state.transactions);
     const categories: CategoriesPropsType[] = [
         {
-            id: 1,
+            id: '1',
             icoId: 'RiBillFill',
             bgColor: '#06b681',
             title: 'Bills',
             value: '875.00'
         },
         {
-            id: 2,
+            id: '2',
             icoId: 'AiOutlineStock',
             bgColor: '#ff9165',
             title: 'Investments',
@@ -80,22 +49,10 @@ const App: React.FC = () => {
     ]
 
 
-    const removeTransaction = (transactionId: number) => {
-        setTransactions(transactions.filter(tr => tr.id !== transactionId));
+    const removeTransaction = (transactionId: string) => {
+        //setTransactions(transactions.filter(tr => tr.id !== transactionId));
     }
-    const addTransaction = () => {
-        const newId = transactions.length + 1;
-        const newTransaction = {
-            id: newId,
-            icoId: 'BsFillCupHotFill',
-            icoColor: '45, 138, 254',
-            title: 'New title',
-            date: '28 July 2023',
-            value: '150.00',
-            pined: false};
-
-        setTransactions([newTransaction, ...transactions]);
-    }
+    const addTransaction = () => dispatch(addTransactionAC('BsFillCupHotFill', '0,0,0', 'ActionCreator', 'right now', '999', false));
 
     let [sorted, setSorted] = useState<SortType>('standard');
 

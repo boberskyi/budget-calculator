@@ -7,7 +7,7 @@ import {CategoriesPropsType, SortType, TransactionsType} from "../../App";
 
 type MainPropsType = {
     transactions: TransactionsType[],
-    removeTransaction: (transactionId:number) => void,
+    removeTransaction: (transactionId:string) => void,
     sortByValue: (sortVal:SortType) => void,
     categories: CategoriesPropsType[],
     addTransaction: () => void

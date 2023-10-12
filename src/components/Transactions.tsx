@@ -8,7 +8,7 @@ import {AddTransactionsForm} from "./Sidebar/AddTransactionsForm/AddTransactions
 
 type TransactionsPropsType = {
     transactions: TransactionsType[],
-    removeTransaction: (transactionId:number) => void,
+    removeTransaction: (transactionId:string) => void,
     addTransaction: () => void
 }
 export const Transactions:React.FC<TransactionsPropsType> = (
